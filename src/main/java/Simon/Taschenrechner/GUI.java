@@ -20,6 +20,7 @@ public class GUI {
 	private JFrame frame;
 	private JTextField textField;
 	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -52,21 +53,27 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 271, 135);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[][][][][][][grow]", "[][][][][][][]"));
 		
-		JLabel lblNewLabel = new JLabel("Gib den Text rechts ein:");
+		JLabel lblNewLabel = new JLabel("Rechenauftrag");
 		panel.add(lblNewLabel, "cell 2 2");
 		
 		textField = new JTextField();
-		panel.add(textField, "cell 5 2,growx");
+		panel.add(textField, "cell 4 2,growx");
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Print");
+		lblNewLabel_2 = new JLabel("=");
+		panel.add(lblNewLabel_2, "cell 5 2");
+		
+		lblNewLabel_1 = new JLabel("Ergebnis");
+		panel.add(lblNewLabel_1, "cell 6 2");
+		
+		JButton btnNewButton = new JButton("Berechnen");
 		panel.add(btnNewButton, "cell 2 4");
 		btnNewButton.addActionListener(new ActionListener(){
 
@@ -74,12 +81,9 @@ public class GUI {
 				
 				String input = textField.getText();
 				
-				lblNewLabel_1.setText(input);
+				lblNewLabel_1.setText(Rechner.berechnen(input));
 				
 			}});
-		
-		lblNewLabel_1 = new JLabel("Text:");
-		panel.add(lblNewLabel_1, "cell 5 4");
 		
 		
 	}
