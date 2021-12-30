@@ -1,7 +1,7 @@
 package Simon.Taschenrechner;
 
 public class Rechner {
-
+	
 	public static String berechnen(String input) {
 		
 		boolean incMulOrDiv = false;
@@ -31,9 +31,47 @@ public class Rechner {
 		
 	}
 	
+	public static wrapper defineOperands(String input, int inputLength, int i) {
+		
+		//Operanden definieren \/
+		
+		int pre1 = i-1;
+		if(pre1 != 0) {
+			while(input.charAt(pre1-1) != '+' && input.charAt(pre1-1) != '-') {
+				pre1--;
+			if(pre1 == 0)
+				break;
+			}
+		}
+		
+		int post1 = i + 1;
+		int post2 = post1;
+		if(post2 != inputLength - 1) {
+			if(input.charAt(post2) == '+' || input.charAt(post2) == '-')
+				post2++;
+			while(input.charAt(post2) != '+' && input.charAt(post2) != '-' && input.charAt(post2) != '*' && input.charAt(post2) != '/') {
+				post2++;
+				if(post2 == inputLength - 1) {
+					post2++;
+					break;
+				}
+			}
+			
+		}
+		
+		//Beide Operanden definiert /\
+		
+		wrapper w = new wrapper(pre1, post1, post2);
+		
+		return w;
+		
+	}
+	
 	public static String addOrSubtract(String input, int inputLength) {
 		
-		return "";
+		
+		
+		return input;
 		
 	}
 	
@@ -49,32 +87,11 @@ public class Rechner {
 			if(input.charAt(i) == '*' || input.charAt(i) == '/') {
 				
 				//Operanden definieren \/
-				
-				int pre1 = i-1;
-				if(pre1 != 0) {
-					while(input.charAt(pre1-1) != '+' && input.charAt(pre1-1) != '-') {
-						pre1--;
-					if(pre1 == 0)
-						break;
-					}
-				}
-				
-				int post1 = i + 1;
-				int post2 = post1;
-				if(post2 != inputLength - 1) {
-					if(input.charAt(post2) == '+' || input.charAt(post2) == '-')
-						post2++;
-					while(input.charAt(post2) != '+' && input.charAt(post2) != '-' && input.charAt(post2) != '*' && input.charAt(post2) != '/') {
-						post2++;
-						if(post2 == inputLength - 1) {
-							post2++;
-							break;
-						}
-					}
-					
-				}
-				
-				//Beide Operanden definiert /\
+				wrapper w = defineOperands(input, inputLength, i);
+				int pre1 = w.pre1;
+				int post1 = w.post1;
+				int post2= w.post2;
+				//Operanden definiert /\
 				
 				//Ergebnis berechnen \/
 				
