@@ -2,10 +2,43 @@ package Simon.Taschenrechner;
 
 public class Rechner {
 
-	
 	public static String berechnen(String input) {
 		
+		boolean incMulOrDiv = false;
+		boolean incAddOrSub = false;
 		int inputLength = input.length();
+		String result;
+		
+		for(int i = 0; i < inputLength; i++) {
+			
+			if(input.charAt(i) == '*' || input.charAt(i) == '/')
+				incMulOrDiv = true;
+			if(input.charAt(i) == '+' || input.charAt(i) == '-')
+				incAddOrSub = true;
+			
+		}
+		
+		if(incMulOrDiv && incAddOrSub) {
+			input = multiplicateOrDivide(input, inputLength);
+			result = addOrSubtract(input, inputLength);
+		}
+		else if(incMulOrDiv && !incAddOrSub)
+			result = multiplicateOrDivide(input, inputLength);
+		else //if(!incMulOrDiv && incAddOrSub)
+			result = addOrSubtract(input, inputLength);
+		
+		return result;
+		
+	}
+	
+	public static String addOrSubtract(String input, int inputLength) {
+		
+		return "";
+		
+	}
+	
+	public static String multiplicateOrDivide(String input, int inputLength) {
+		
 		double resultTemp;
 		
 		String inputPre;
