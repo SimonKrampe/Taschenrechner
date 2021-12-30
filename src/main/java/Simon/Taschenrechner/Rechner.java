@@ -15,6 +15,8 @@ public class Rechner {
 				incMulOrDiv = true;
 			if(input.charAt(i) == '+' || input.charAt(i) == '-')
 				incAddOrSub = true;
+			if(incMulOrDiv && incAddOrSub)
+				break;
 			
 		}
 		
@@ -33,7 +35,7 @@ public class Rechner {
 	
 	public static wrapper defineOperands(String input, int inputLength, int i) {
 		
-		//Operanden definieren \/
+		//Operanden + Operator definieren \/
 		
 		int pre1 = i-1;
 		if(pre1 != 0) {
@@ -59,9 +61,24 @@ public class Rechner {
 			
 		}
 		
-		//Beide Operanden definiert /\
 		
-		wrapper w = new wrapper(pre1, post1, post2);
+		String pre = input.substring(pre1, i);
+		String post;
+		if(post1 == post2) {
+			post = "" + input.charAt(post1);
+			post2++;
+		}
+		else
+			post = input.substring(post1, post2);
+		
+		double operand1 = Double.valueOf(pre);
+		double operand2 = Double.valueOf(post);
+		
+		char operator = input.charAt(i);
+		
+		//Verpacken \/
+		
+		wrapper w = new wrapper(pre1, post2, operand1, operand2, operator);
 		
 		return w;
 		
@@ -74,12 +91,44 @@ public class Rechner {
 		
 		input = inputPre + resultTemp + inputPost;
 		
+		//Auf doppelte Operatoren überprüfen
+		for(int i = 0; i < input.length(); i++) {
+			
+			
+			
+		}
+		
 		return input;
 	}
 	
 	public static String addOrSubtract(String input, int inputLength) {
 		
+		double resultTemp;
 		
+		for(int i = 0; i < inputLength; i++) {
+			
+			if(input.charAt(i) == '+' || input.charAt(i) == '-') {
+				
+				//Operanden definieren \/
+				wrapper w = defineOperands(input, inputLength, i);
+				
+				//Ergebnis berechnen \/
+				
+				if(w.operator == '+')
+					resultTemp = w.operand1 + w.operand2;
+				else //if(w.operator == '-')
+					resultTemp = w.operand1 - w.operand2;
+				
+				//Neuer String und for-loop neustarten \/
+				
+				input = updateInput(input, w.pre1, w.post2, resultTemp);
+				inputLength = input.length();
+				
+				i=0;
+				
+			}
+			
+		}
 		
 		return input;
 		
@@ -94,38 +143,19 @@ public class Rechner {
 			if(input.charAt(i) == '*' || input.charAt(i) == '/') {
 				
 				//Operanden definieren \/
+				
 				wrapper w = defineOperands(input, inputLength, i);
-				int pre1 = w.pre1;
-				int post1 = w.post1;
-				int post2= w.post2;
-				//Operanden definiert /\
 				
 				//Ergebnis berechnen \/
 				
-				String pre = input.substring(pre1, i);
-				String post;
-				if(post1 == post2) {
-					post = "" + input.charAt(post1);
-					post2++;
-				}
-				else
-					post = input.substring(post1, post2);
-				
-				double operand1 = Double.valueOf(pre);
-				double operand2 = Double.valueOf(post);
-				
-				char operator = input.charAt(i);
-				
-				if(operator == '*')
-					resultTemp = operand1 * operand2;
-				else //if(operator == '/')
-					resultTemp = operand1 / operand2;
-					
-				//Ergebnis von dieser Berechnung /\
+				if(w.operator == '*')
+					resultTemp = w.operand1 * w.operand2;
+				else //if(w.operator == '/')
+					resultTemp = w.operand1 / w.operand2;
 				
 				//Neuer String und for-loop neustarten \/
 				
-				input = updateInput(input, pre1, post2, resultTemp);
+				input = updateInput(input, w.pre1, w.post2, resultTemp);
 				inputLength = input.length();
 
 				i = 0;
