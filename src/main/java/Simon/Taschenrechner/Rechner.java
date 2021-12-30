@@ -6,10 +6,9 @@ public class Rechner {
 
 		boolean incMulOrDiv = false;
 		boolean incAddOrSub = false;
-		int inputLength = input.length();
 		String result;
 
-		for (int i = 0; i < inputLength; i++) {
+		for (int i = 0; i < input.length(); i++) {
 
 			if (input.charAt(i) == '*' || input.charAt(i) == '/')
 				incMulOrDiv = true;
@@ -21,18 +20,18 @@ public class Rechner {
 		}
 
 		if (incMulOrDiv && incAddOrSub) {
-			input = multiplicateOrDivide(input, inputLength);
-			result = addOrSubtract(input, inputLength);
+			input = multiplicateOrDivide(input);
+			result = addOrSubtract(input);
 		} else if (incMulOrDiv && !incAddOrSub)
-			result = multiplicateOrDivide(input, inputLength);
+			result = multiplicateOrDivide(input);
 		else // if(!incMulOrDiv && incAddOrSub)
-			result = addOrSubtract(input, inputLength);
+			result = addOrSubtract(input);
 
 		return result;
 
 	}
 
-	public static wrapper defineOperands(String input, int inputLength, int i) {
+	public static wrapper defineOperands(String input, int i) {
 
 		// Operanden + Operator definieren \/
 
@@ -47,13 +46,13 @@ public class Rechner {
 
 		int post1 = i + 1;
 		int post2 = post1;
-		if (post2 != inputLength - 1) {
+		if (post2 != input.length() - 1) {
 			if (input.charAt(post2) == '+' || input.charAt(post2) == '-')
 				post2++;
 			while (input.charAt(post2) != '+' && input.charAt(post2) != '-' && input.charAt(post2) != '*'
 					&& input.charAt(post2) != '/') {
 				post2++;
-				if (post2 == inputLength - 1) {
+				if (post2 == input.length() - 1) {
 					post2++;
 					break;
 				}
@@ -90,7 +89,7 @@ public class Rechner {
 		input = inputPre + resultTemp + inputPost;
 
 		// Auf doppelte Operatoren überprüfen \/
-		
+
 		input = checkDoubleOp(input);
 
 		return input;
@@ -98,39 +97,33 @@ public class Rechner {
 
 	public static String checkDoubleOp(String input) {
 
-		for (int i = 0; i < input.length(); i++) {
-
-			if (input.charAt(i) == '+' || input.charAt(i) == '-' || input.charAt(i) == '*' || input.charAt(i) == '/') {
-
-				if (input.charAt(i) == input.charAt(i + 1)) {
-					input = input.substring(0, i).concat(input.substring(i + 1));
-					i--;
-				}
-
-			}
-
-		}
+		input = input.replace("--", "+");
+		input = input.replace("+-", "-");
+		input = input.replace("-+", "-");
+		input = input.replace("++", "+");
 		
+
 		return input;
 
 	}
 
-	public static String addOrSubtract(String input, int inputLength) {
+	public static String addOrSubtract(String input) {
 
-		double resultTemp;
-		
+		double resultTemp = 0;
+
 		input = checkDoubleOp(input);
-		inputLength = input.length();
 
-		for (int i = 0; i < inputLength; i++) {
+		for (int i = 0; i < input.length(); i++) {
 
-			if (input.charAt(i) == '+' || input.charAt(i) == '-') {
+			if (i != 0 && (input.charAt(i) == '+' && i != 0 || input.charAt(i) == '-')) {
 
 				// Operanden definieren \/
-				wrapper w = defineOperands(input, inputLength, i);
+				wrapper w = defineOperands(input, i);
 
 				// Ergebnis berechnen \/
 
+				if(input.charAt(w.pre1-1) == '-')
+					w.operand2 = w.operand2 * -1;
 				if (w.operator == '+')
 					resultTemp = w.operand1 + w.operand2;
 				else // if(w.operator == '-')
@@ -139,7 +132,6 @@ public class Rechner {
 				// Neuer String und for-loop neustarten \/
 
 				input = updateInput(input, w.pre1, w.post2, resultTemp);
-				inputLength = input.length();
 
 				i = 0;
 
@@ -151,17 +143,17 @@ public class Rechner {
 
 	}
 
-	public static String multiplicateOrDivide(String input, int inputLength) {
+	public static String multiplicateOrDivide(String input) {
 
 		double resultTemp;
 
-		for (int i = 0; i < inputLength; i++) {
+		for (int i = 0; i < input.length(); i++) {
 
 			if (input.charAt(i) == '*' || input.charAt(i) == '/') {
 
 				// Operanden definieren \/
 
-				wrapper w = defineOperands(input, inputLength, i);
+				wrapper w = defineOperands(input, i);
 
 				// Ergebnis berechnen \/
 
@@ -173,7 +165,6 @@ public class Rechner {
 				// Neuer String und for-loop neustarten \/
 
 				input = updateInput(input, w.pre1, w.post2, resultTemp);
-				inputLength = input.length();
 
 				i = 0;
 
