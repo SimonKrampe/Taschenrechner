@@ -67,6 +67,16 @@ public class Rechner {
 		
 	}
 	
+	public static String updateInput(String input, int pre1, int post2, double resultTemp) {
+		
+		String inputPre = input.substring(0,pre1);
+		String inputPost = input.substring(post2);
+		
+		input = inputPre + resultTemp + inputPost;
+		
+		return input;
+	}
+	
 	public static String addOrSubtract(String input, int inputLength) {
 		
 		
@@ -78,9 +88,6 @@ public class Rechner {
 	public static String multiplicateOrDivide(String input, int inputLength) {
 		
 		double resultTemp;
-		
-		String inputPre;
-		String inputPost;
 		
 		for(int i = 0; i < inputLength; i++) {
 			
@@ -118,10 +125,7 @@ public class Rechner {
 				
 				//Neuer String und for-loop neustarten \/
 				
-				inputPre = input.substring(0,pre1);
-				inputPost = input.substring(post2);
-				
-				input = inputPre + resultTemp + inputPost;
+				input = updateInput(input, pre1, post2, resultTemp);
 				inputLength = input.length();
 
 				i = 0;

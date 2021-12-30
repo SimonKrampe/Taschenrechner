@@ -53,28 +53,28 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 271, 135);
+		frame.setBounds(100, 100, 380, 160);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][][][][][][grow]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][][][grow][][][]", "[][][][][][][]"));
 		
 		JLabel lblNewLabel = new JLabel("Rechenauftrag");
-		panel.add(lblNewLabel, "cell 2 2");
+		panel.add(lblNewLabel, "cell 1 2");
 		
 		textField = new JTextField();
-		panel.add(textField, "cell 4 2,growx");
+		panel.add(textField, "cell 3 2,growx");
 		textField.setColumns(10);
 		
+		JButton btnNewButton = new JButton("Berechnen");
+		panel.add(btnNewButton, "cell 1 4");
+		
 		lblNewLabel_2 = new JLabel("=");
-		panel.add(lblNewLabel_2, "cell 5 2");
+		panel.add(lblNewLabel_2, "cell 2 4");
 		
 		lblNewLabel_1 = new JLabel("Ergebnis");
-		panel.add(lblNewLabel_1, "cell 6 2");
-		
-		JButton btnNewButton = new JButton("Berechnen");
-		panel.add(btnNewButton, "cell 2 4");
+		panel.add(lblNewLabel_1, "cell 3 4");
 		btnNewButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
