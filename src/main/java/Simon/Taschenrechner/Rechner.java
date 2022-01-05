@@ -1,6 +1,44 @@
 package Simon.Taschenrechner;
 
-public class Rechner {
+public class Rechner implements Runnable{
+	
+	String userInput;
+	
+	public Rechner(String pUserInput) {
+		
+		userInput = pUserInput;
+		
+	}
+	
+	@Override
+	public void run() {
+		
+		boolean incMulOrDiv = false;
+		boolean incAddOrSub = false;
+		String result;
+
+		for (int i = 0; i < userInput.length(); i++) {
+
+			if (userInput.charAt(i) == '*' || userInput.charAt(i) == '/')
+				incMulOrDiv = true;
+			if (userInput.charAt(i) == '+' || userInput.charAt(i) == '-')
+				incAddOrSub = true;
+			if (incMulOrDiv && incAddOrSub)
+				break;
+
+		}
+
+		if (incMulOrDiv && incAddOrSub) {
+			userInput = multiplicateOrDivide(userInput);
+			result = addOrSubtract(userInput);
+		} else if (incMulOrDiv && !incAddOrSub)
+			result = multiplicateOrDivide(userInput);
+		else // if(!incMulOrDiv && incAddOrSub)
+			result = addOrSubtract(userInput);
+		
+		System.out.println(result);
+		
+	}
 
 	public static String berechnen(String input) {
 
