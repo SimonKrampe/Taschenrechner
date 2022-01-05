@@ -14,6 +14,11 @@ import javax.swing.JTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class GUI {
 
@@ -21,6 +26,9 @@ public class GUI {
 	private JTextField textField;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
 
 	/**
 	 * Launch the application.
@@ -53,12 +61,12 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 380, 160);
+		frame.setBounds(100, 100, 380, 135);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][][][grow][][][]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][][][grow][][][]", "[][][][][][][][][]"));
 		
 		JLabel lblNewLabel = new JLabel("Rechenauftrag");
 		panel.add(lblNewLabel, "cell 1 2");
@@ -75,6 +83,20 @@ public class GUI {
 		
 		lblNewLabel_1 = new JLabel("Ergebnis");
 		panel.add(lblNewLabel_1, "cell 3 4");
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		mnNewMenu = new JMenu("Optionen");
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem("Laufzeitberechnung");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Simon.Laufzeitberechnung.LaufzeitberechnungGUI.start();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		btnNewButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
