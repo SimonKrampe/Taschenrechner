@@ -118,9 +118,6 @@ public class LaufzeitberechnungGUI {
 		panel.add(btnNewButton, "cell 0 3 4 1,alignx center");
 
 		JProgressBar progressBar = new JProgressBar();
-		String s = numOfOperands.getText();
-		int numOfOperandsInt = Integer.parseInt(s);
-		progressBar.setMaximum(numOfOperandsInt);
 		panel.add(progressBar, "cell 0 4 4 1,growx,alignx center");
 
 		btnNewButton.addActionListener(new ActionListener() {
@@ -129,19 +126,54 @@ public class LaufzeitberechnungGUI {
 
 
 				String input = operant.getText();
-
-				for (int i = 0; i < numOfOperandsInt; i++) {
-
-					newInput(input, mulOrDiv.isSelected(), addOrSub.isSelected(), negNum.isSelected(), operant.getText());
+				
+				class Laufzeitberechnung implements Runnable {
+					
+					String input;
+					int numOfOperandsInt;
+					public Laufzeitberechnung(String pInput, int pNumOfOperandsInt) {
+						input = pInput;
+						numOfOperandsInt = pNumOfOperandsInt;
+					}
+					
+					@Override
+					public void run() {
+						
+						for (int i = 0; i < numOfOperandsInt; i++) {
+							
+							long start = System.nanoTime();
+							
+							Simon.Taschenrechner.Rechner.berechnen(input);
+							
+							long finish = System.nanoTime();
+							long timePassed = finish - start;
+							
+							progressBar.setValue(i+1);
+							
+							System.out.println("Time taken: "+ timePassed);
+							System.out.println(i);
+							
+							input = newInput(input, mulOrDiv.isSelected(), addOrSub.isSelected(), negNum.isSelected(), operant.getText());
+							
+						}
+						
+					}
 					
 				}
+
+				String s = numOfOperands.getText();
+				int numOfOperandsInt = Integer.parseInt(s);
+				progressBar.setMaximum(numOfOperandsInt);
+				
+				Thread t = new Thread(new Laufzeitberechnung(input, numOfOperandsInt));
+				t.start();
 
 			}
 		});
 
 	}
 
-	private void newInput(String input, boolean useMulOrDiv, boolean useAddOrSub, boolean useNegNum, String operant) {
+	private String newInput(String input, boolean useMulOrDiv, boolean useAddOrSub, boolean useNegNum, String operant) {
 
 		char[] operators = new char[] { '+', '-', '*', '/' };
 		char[] addOrSubOperators = new char[] { '+', '-' };
@@ -160,8 +192,9 @@ public class LaufzeitberechnungGUI {
 		if(useNegNum)
 			negNum = (rnd.nextBoolean()) ? "" : "-";
 		
-		double number = Double.valueOf(operant);
-		String New = operator + negNum + number;
-
+		String New = operator + negNum + operant;
+		input = input.concat(New);
+		return input;
+		
 	}
 }

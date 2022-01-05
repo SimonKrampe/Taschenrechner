@@ -1,42 +1,12 @@
 package Simon.Taschenrechner;
 
-public class Rechner implements Runnable{
+public class Rechner {
 	
 	String userInput;
 	
 	public Rechner(String pUserInput) {
 		
 		userInput = pUserInput;
-		
-	}
-	
-	@Override
-	public void run() {
-		
-		boolean incMulOrDiv = false;
-		boolean incAddOrSub = false;
-		String result;
-
-		for (int i = 0; i < userInput.length(); i++) {
-
-			if (userInput.charAt(i) == '*' || userInput.charAt(i) == '/')
-				incMulOrDiv = true;
-			if (userInput.charAt(i) == '+' || userInput.charAt(i) == '-')
-				incAddOrSub = true;
-			if (incMulOrDiv && incAddOrSub)
-				break;
-
-		}
-
-		if (incMulOrDiv && incAddOrSub) {
-			userInput = multiplicateOrDivide(userInput);
-			result = addOrSubtract(userInput);
-		} else if (incMulOrDiv && !incAddOrSub)
-			result = multiplicateOrDivide(userInput);
-		else // if(!incMulOrDiv && incAddOrSub)
-			result = addOrSubtract(userInput);
-		
-		System.out.println(result);
 		
 	}
 
@@ -160,7 +130,7 @@ public class Rechner implements Runnable{
 
 				// Ergebnis berechnen \/
 
-				if(input.charAt(w.pre1-1) == '-')
+				if(w.pre1 != 0 && input.charAt(w.pre1-1) == '-')
 					w.operand2 = w.operand2 * -1;
 				if (w.operator == '+')
 					resultTemp = w.operand1 + w.operand2;
