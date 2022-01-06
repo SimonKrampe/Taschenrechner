@@ -127,6 +127,12 @@ public class LaufzeitberechnungGUI {
 
 				String input = operant.getText();
 				
+				String s = numOfOperands.getText();
+				int numOfOperandsInt = Integer.parseInt(s);
+				progressBar.setMaximum(numOfOperandsInt);
+
+				long[] allTimes = new long[numOfOperandsInt];
+				
 				class Laufzeitberechnung implements Runnable {
 					
 					String input;
@@ -153,6 +159,8 @@ public class LaufzeitberechnungGUI {
 							System.out.println("Time taken: "+ timePassed);
 							System.out.println(i);
 							
+							allTimes[i] = timePassed;
+							
 							input = newInput(input, mulOrDiv.isSelected(), addOrSub.isSelected(), negNum.isSelected(), operant.getText());
 							
 						}
@@ -161,12 +169,11 @@ public class LaufzeitberechnungGUI {
 					
 				}
 
-				String s = numOfOperands.getText();
-				int numOfOperandsInt = Integer.parseInt(s);
-				progressBar.setMaximum(numOfOperandsInt);
-				
 				Thread t = new Thread(new Laufzeitberechnung(input, numOfOperandsInt));
 				t.start();
+				
+				
+				//SaveFile.saveTimes(fileName.getName(), allTimes);
 
 			}
 		});
