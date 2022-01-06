@@ -165,15 +165,14 @@ public class LaufzeitberechnungGUI {
 							
 						}
 						
+						SaveFile.saveTimes(fileName.getName(), allTimes);
+						
 					}
 					
 				}
 
 				Thread t = new Thread(new Laufzeitberechnung(input, numOfOperandsInt));
 				t.start();
-				
-				
-				//SaveFile.saveTimes(fileName.getName(), allTimes);
 
 			}
 		});

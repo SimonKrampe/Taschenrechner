@@ -21,36 +21,41 @@ public class SaveFile {
 	
 	public static void array(String name, long[] allTimes) {
 		
-		for(int i = 0; i < allTimes.length; i++) {
+		String toSave = "" + allTimes[0];
+		
+		for(int i = 1; i < allTimes.length; i++) {
 			
-			try {
-				FileWriter fw = new FileWriter(name + ".txt");
-				fw.write("test");
-				fw.write(System.getProperty("line.separator"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			toSave = toSave + "\n" + allTimes[i];
 			
 		}
+		
+		try {
+			FileWriter fw = new FileWriter(name + ".txt");
+			fw.write(toSave);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("Saved the entire Array to: " + name + ".txt");
+		
 	}
 	
 	public static void saveTimes(String name, long[] allTimes) {
 		
 		if(name == null) {
 			
-			name = "unnamed";
-			File f = new File(name);
+			File f = new File("unnamed (0).txt");
 			int nameNumber = 0;
 			
 			while(f.exists()) {
 
 				nameNumber++;
-				f = new File(name + " (" + nameNumber + ")");
+				f = new File("unnamed (" + nameNumber + ")" + ".txt");
 				
 			}
-			name = f.getName();
-			create(f.getName());
+			name = "unnamed (" + nameNumber + ")";
+			create(name);
 			
 		}
 		else {
