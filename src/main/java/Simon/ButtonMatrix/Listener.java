@@ -14,10 +14,10 @@ public class Listener {
 		
 		final GpioController gpio = GpioFactory.getInstance();
 		
-		char[][] matrix = {	{'1', '2', '3', '+'},
-							{'3', '5', '6', '-'},
+		char[][] matrix = {	{'.', '0', '#', '/'},
 							{'7', '8', '9', '*'},
-							{'.', '0', '#', '/'}};
+							{'4', '5', '6', '-'},
+							{'1', '2', '3', '+'}};
 		
 		//Rows
 		final GpioPinDigitalInput row1 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_21, PinPullResistance.PULL_UP);
@@ -50,11 +50,14 @@ public class Listener {
 				
 				column[i].low();
 				
-				for (int j = 0; i < 4; i++) {
+				for (int j = 0; j < 4; j++) {
 					
 					if(row[j].isLow()) {
 						
-						System.out.println(matrix[i][j]);
+						System.out.println(matrix[j][i]);
+						while (row[j].isLow()) {
+							;
+						}
 						
 					}
 					
