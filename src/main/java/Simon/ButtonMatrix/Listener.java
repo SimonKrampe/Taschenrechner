@@ -44,6 +44,8 @@ public class Listener {
 		column3.setShutdownOptions(true, PinState.LOW);
 		column4.setShutdownOptions(true, PinState.LOW);
 		
+		StringCompose compose = new StringCompose();
+		
 		while (true) {
 			
 			for (int i = 0; i < 4; i++) {
@@ -55,6 +57,7 @@ public class Listener {
 					if(row[j].isLow()) {
 						
 						System.out.println(matrix[j][i]);
+						compose.add(matrix[j][i]);
 						while (row[j].isLow()) {
 							;
 						}

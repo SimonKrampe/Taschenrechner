@@ -11,9 +11,11 @@ public class Rechner {
 	}
 
 	public static String berechnen(String input) {
+		
+		if(input == null)
 
-		boolean incMulOrDiv = false;
-		boolean incAddOrSub = false;
+		Boolean incMulOrDiv = new Boolean(false);
+		Boolean incAddOrSub = false;
 		String result;
 
 		for (int i = 0; i < input.length(); i++) {

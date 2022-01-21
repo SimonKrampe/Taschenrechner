@@ -25,17 +25,18 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-core.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-core-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-core-sources.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-device.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-device-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-device-sources.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-example.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-example-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-example-sources.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-gpio-extension.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-gpio-extension-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads 2.0/Grid65_lib/pi4j-gpio-extension-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/junit.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-core.jar" sourcepath="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-core-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-core-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-core-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-device.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-device-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-device-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-example.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-example-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-example-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-gpio-extension.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-gpio-extension-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads 2.0/pi4j-1.3/pi4j-1.3/lib/pi4j-gpio-extension-sources.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
