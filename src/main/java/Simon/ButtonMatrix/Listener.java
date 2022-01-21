@@ -1,5 +1,7 @@
 package Simon.ButtonMatrix;
 
+import java.io.IOException;
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -10,7 +12,7 @@ import com.pi4j.io.gpio.RaspiPin;
 
 public class Listener {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		final GpioController gpio = GpioFactory.getInstance();
 		
@@ -55,6 +57,7 @@ public class Listener {
 					if(row[j].isLow()) {
 						
 						System.out.println(matrix[j][i]);
+						stringComposer.add(matrix[j][i]);
 						while (row[j].isLow()) {
 							;
 						}
