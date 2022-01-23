@@ -6,7 +6,7 @@ public class stringComposer {
 
 	
 	
-	public static void add(char toAdd) throws IOException {
+	public static void add(char toAdd) throws IOException, InterruptedException {
 		
 		System.out.println(System.getProperty("user.dir"));
 		
@@ -16,8 +16,14 @@ public class stringComposer {
 		String line1Temp = "";
 		String line2Temp = "";
 		
-		if (toAdd == '#')
+		if (toAdd == '#') {
+			
 			result = Simon.Taschenrechner.Rechner.berechnen(input);
+			Process displayResult = new ProcessBuilder("python", "controlDisplay.py", result, "").start();
+			displayResult.waitFor();
+			return;
+			
+		}
 		input = input + toAdd;
 		line1Temp = line1Temp + toAdd;
 		if (toAdd == '+' || toAdd == '-' || toAdd == '*' || toAdd == '/') {
@@ -27,8 +33,8 @@ public class stringComposer {
 			
 		}
 		
-		ProcessBuilder pb = new ProcessBuilder("python", "controlDisplay.py", line1Temp, line2Temp);
-		Process p = pb.start();
+		Process displayOperands = new ProcessBuilder("python", "controlDisplay.py", line1Temp, line2Temp).start();
+		displayOperands.waitFor();
 		
 	}
 	
