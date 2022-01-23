@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+#Display Controll Code from Waveshare https://www.waveshare.com/wiki/File:LCD1602-RGB-Module-demo.zip // https://www.waveshare.com/wiki/LCD1602_RGB_Module?Amazon
+
 import time
 from smbus import SMBus
 b = SMBus(1)
