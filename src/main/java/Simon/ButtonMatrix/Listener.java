@@ -16,10 +16,10 @@ public class Listener {
 		
 		final GpioController gpio = GpioFactory.getInstance();
 		
-		char[][] matrix = {	{'.', '0', '#', '/'},
-							{'7', '8', '9', '*'},
-							{'4', '5', '6', '-'},
-							{'1', '2', '3', '+'}};
+		char[][] matrix = {	{'1', '2', '3', '+', 't'},
+							{'4', '5', '6', '-', 't'},
+							{'7', '8', '9', '*', 't'},
+							{'.', '0', '#', '/', 't'}};
 		
 		//Rows
 		final GpioPinDigitalInput row1 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_21, PinPullResistance.PULL_UP);
@@ -33,7 +33,8 @@ public class Listener {
 		final GpioPinDigitalOutput column2 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, PinState.HIGH);
 		final GpioPinDigitalOutput column3 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, PinState.HIGH);
 		final GpioPinDigitalOutput column4 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_26, PinState.HIGH);
-		GpioPinDigitalOutput[] column = {column1, column2, column3, column4};
+		final GpioPinDigitalOutput column5 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27, PinState.HIGH);
+		GpioPinDigitalOutput[] column = {column1, column2, column3, column4, column5};
 		
 		//Shutdown options
 		row1.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
@@ -45,10 +46,11 @@ public class Listener {
 		column2.setShutdownOptions(true, PinState.LOW);
 		column3.setShutdownOptions(true, PinState.LOW);
 		column4.setShutdownOptions(true, PinState.LOW);
+		column5.setShutdownOptions(true, PinState.LOW);
 		
 		while (true) {
 			
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 5; i++) {
 				
 				column[i].low();
 				
