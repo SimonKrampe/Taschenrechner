@@ -37,16 +37,17 @@ public class Listener {
 		GpioPinDigitalOutput[] column = {column1, column2, column3, column4, column5};
 		
 		//Shutdown options
-		row1.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
-		row2.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
-		row3.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
-		row4.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 		
 		column1.setShutdownOptions(true, PinState.LOW);
 		column2.setShutdownOptions(true, PinState.LOW);
 		column3.setShutdownOptions(true, PinState.LOW);
 		column4.setShutdownOptions(true, PinState.LOW);
 		column5.setShutdownOptions(true, PinState.LOW);
+		
+		row1.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		row2.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		row3.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		row4.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 		
 		while (true) {
 			
