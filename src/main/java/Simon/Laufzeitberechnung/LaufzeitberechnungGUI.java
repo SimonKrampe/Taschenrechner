@@ -59,7 +59,7 @@ public class LaufzeitberechnungGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 470, 300);
+		frame.setBounds(100, 100, 470, 180);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JPanel panel = new JPanel();
