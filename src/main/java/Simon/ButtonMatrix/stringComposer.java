@@ -14,6 +14,9 @@ public class stringComposer {
 		
 		System.out.println(System.getProperty("user.dir"));
 		
+		if (toAdd == 'e')
+			System.exit(0);
+		
 		if (toAdd == '#') {
 			
 			result = Simon.Taschenrechner.Rechner.berechnen(input);

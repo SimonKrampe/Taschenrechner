@@ -16,10 +16,10 @@ public class Listener {
 		
 		final GpioController gpio = GpioFactory.getInstance();
 		
-		char[][] matrix = {	{'1', '2', '3', '+', 't'},
-							{'4', '5', '6', '-', 't'},
-							{'7', '8', '9', '*', 't'},
-							{'.', '0', '#', '/', 't'}};
+		char[][] matrix = {	{'1', '2', '3', '+', '1'},
+							{'4', '5', '6', '-', '1'},
+							{'7', '8', '9', '*', '1'},
+							{'.', '0', '#', '/', 'e'}};
 		
 		//Rows
 		final GpioPinDigitalInput row1 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_21, PinPullResistance.PULL_UP);
